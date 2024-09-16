@@ -9,5 +9,6 @@ public interface FilaPrioridade {
 	* Remove o elemento de maior prioridade da fila.
 	*/
 	public String removeNext();
+	
 
 }

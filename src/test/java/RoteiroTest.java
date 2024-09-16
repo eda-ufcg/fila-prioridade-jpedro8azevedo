@@ -1,6 +1,5 @@
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
-import java.util.Arrays;
 
 public class RoteiroTest {
     
@@ -8,7 +7,7 @@ public class RoteiroTest {
 	public void test() {
 		FilaPrioridade heap = new HeapFilaPrioridade(5);
 		FilaPrioridade insereFinal = new InsereFinalFilaPrioridade(5);
-		FilaPrioridade insertion = new InsereOrdenadoFilaPrioridade(5);
+		InsereOrdenadoFilaPrioridade insertion = new InsereOrdenadoFilaPrioridade(5);
 		FilaPrioridade[] estrategias = new FilaPrioridade[3];
 		estrategias[0] = heap;
 		estrategias[1] = insereFinal;
@@ -24,21 +23,36 @@ public class RoteiroTest {
 			fila.add("e", 5);
 		}
 
+		// int[] expected = new int[] {5, 4, 3, 2, 1};
+		// assertEquals(Arrays.toString(insertion.getFila()), Arrays.toString(expected));
+
 		for (FilaPrioridade fila : estrategias) {
 			assertEquals(fila.removeNext(), "e");
 		}
+
+		// expected = new int[] {4, 3, 2, 1, 0};
+		// assertEquals(Arrays.toString(insertion.getFila()), Arrays.toString(expected));
 
 		for (FilaPrioridade fila : estrategias) {
 			assertEquals(fila.removeNext(), "d");
 		}
 
+		// expected = new int[] {3, 2, 1, 0, 0};
+		// assertEquals(Arrays.toString(insertion.getFila()), Arrays.toString(expected));
+
 		for (FilaPrioridade fila : estrategias) {
 			assertEquals(fila.removeNext(), "c");
 		}
 
+		// expected = new int[] {2, 1, 0, 0, 0};
+		// assertEquals(Arrays.toString(insertion.getFila()), Arrays.toString(expected));
+
 		for (FilaPrioridade fila : estrategias) {
 			assertEquals(fila.removeNext(), "b");
 		}
+
+		// expected = new int[] {1, 0, 0, 0, 0};
+		// assertEquals(Arrays.toString(insertion.getFila()), Arrays.toString(expected));
 
 		for (FilaPrioridade fila : estrategias) {
 			assertEquals(fila.removeNext(), "a");
